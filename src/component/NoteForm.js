@@ -54,11 +54,21 @@ class NoteForm extends Component {
         
     }// lay du lieu tu state truyen len tren app
 
+    changeTitle = () => {
+        if(this.props.changeStatus){
+            // true
+            return <h4>Thêm mới</h4>
+        }else{
+            // false
+            return <h4>Sửa</h4>
+        }
+    }
+
     render() {
         return (
             // Note Form
             <div className="col-4">
-            <h3>Sửa nội dung</h3>
+            {this.changeTitle()}
                 <form>
                     <div className="form-group">
                         <label htmlFor="noteTitle">Tiêu đề Note</label>
@@ -82,6 +92,7 @@ class NoteForm extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         editNote: state.editNote,
+        changeStatus: state.isAdd
     }
 }
 

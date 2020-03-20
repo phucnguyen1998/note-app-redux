@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Nav extends Component {
+
+    handleAddNote= (event) => {
+         event.preventDefault(); //click vao khong chuyen trang
+         this.props.addForm();
+         this.props.changeTitleForm();
+    }
 
     render() {
         return (
@@ -15,7 +22,7 @@ class Nav extends Component {
                             <a className="nav-link" >Home <span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" >Xem danh sách Note</a>
+                            <a className="nav-link" href="" onClick={(event) => this.handleAddNote(event)}>Thêm ghi chú</a>
                         </li>
                         </ul>
                     </div>
@@ -26,4 +33,22 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        addForm: () => {
+            dispatch({type: "SHOW_EDIT_FORM"})
+        },
+        changeTitleForm: () => {
+            dispatch({type: "CHANGE_TITLE_FORM"})
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)
