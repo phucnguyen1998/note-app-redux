@@ -5,7 +5,9 @@ let redux = require('redux');
 const noteInitialState = {
     isEdit: false,
     editNote: {},
-    isAdd: false
+    isAdd: false,
+    alertSuccess: false,
+    alertContent: {}
 };// trang thai ban dau cua state
 //reducer quan ly state va action 
 const allReducer = (state = noteInitialState, action) => {
@@ -30,6 +32,12 @@ const allReducer = (state = noteInitialState, action) => {
                 noteContent: action.getItem.noteContent
             });
             return {...state,editNote:{}}
+        
+        case "SHOW_ALERT_SUCCESS":
+            return {...state, alertSuccess: true, alertContent: action.alertContent}
+
+        case "HIDE_ALERT_SUCCESS":
+            return {...state,alertSuccess: false}
 
         case "DELETE_DATA":
             noteData.child(action.isDelete.key).remove();

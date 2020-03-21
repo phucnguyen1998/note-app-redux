@@ -40,14 +40,16 @@ class NoteForm extends Component {
             editObject.noteTitle = this.state.noteTitle;
             editObject.noteContent = this.state.noteContent;
             this.props.editDataStore(editObject);
+            this.props.showAlert("Sua thanh cong");
             // dong form 
             this.props.hideForm();
         }else{ 
-
+            // truong hop them moi du lieu
             let item = {};
             item.noteTitle = title;
             item.noteContent = content;
             this.props.addDataStore(item); // su dung reducer o trong store , dispatch ADD_DATA
+            this.props.showAlert("Them moi thanh cong");
             
         }
         
@@ -112,6 +114,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 type: "SHOW_EDIT_FORM"
             })
         },
+        showAlert: (alertContent) => {
+            dispatch({
+                type: "SHOW_ALERT_SUCCESS",
+                alertContent
+            })
+        },
+        hideAlert: () => {
+            dispatch({
+                type: "HIDE_ALERT_SUCCESS"
+            })
+        }
     }
 }
 // NoteForm se nhan duoc this.props.addDataStore
