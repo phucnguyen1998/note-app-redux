@@ -3,6 +3,7 @@ import Nav from './component/Nav';
 import NoteForm from './component/NoteForm';
 import NoteList from './component/NoteList';
 import { connect } from 'react-redux';
+import AlertSuccess from './component/alert/AlertSuccess';
 
 class App extends Component {
   showFormEdit = () => {
@@ -12,12 +13,21 @@ class App extends Component {
       )
     }
   }
+
+  alert = () => {
+    if(this.props.alertSuccess){
+      return (
+        <AlertSuccess />
+      ) 
+    }
+  }
   
   render() {
     return (
       <>
         <Nav/>
         <div className="container mt-5">
+        {this.alert()}
           <div className="row">
             <NoteList/>
             {this.showFormEdit()}
@@ -31,6 +41,7 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     isEdit: state.isEdit,
+    alertSuccess: state.alertSuccess
   }
 }
 
