@@ -8,8 +8,8 @@ class AlertSuccess extends Component {
     }
     render() {
         return (
-            <AlertContainer>
-                <Alert type="info" onDismiss={() => this.hideAlert()} timeout={1000}>{this.props.alertContent }</Alert>
+            <AlertContainer position="bottom-right">
+                <Alert type={this.props.alertType} onDismiss={() => this.hideAlert()} timeout={1000}>{this.props.alertContent }</Alert>
             </AlertContainer>
         );
     }
@@ -17,7 +17,8 @@ class AlertSuccess extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        alertContent: state.alertContent
+        alertContent: state.alertContent,
+        alertType: state.alertType
     }
 }
 

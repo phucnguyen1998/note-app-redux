@@ -40,7 +40,7 @@ class NoteForm extends Component {
             editObject.noteTitle = this.state.noteTitle;
             editObject.noteContent = this.state.noteContent;
             this.props.editDataStore(editObject);
-            this.props.showAlert("Sua thanh cong");
+            this.props.showAlert("Sua thanh cong","success");
             // dong form 
             this.props.hideForm();
         }else{ 
@@ -49,7 +49,7 @@ class NoteForm extends Component {
             item.noteTitle = title;
             item.noteContent = content;
             this.props.addDataStore(item); // su dung reducer o trong store , dispatch ADD_DATA
-            this.props.showAlert("Them moi thanh cong");
+            this.props.showAlert("Them moi thanh cong","success");
             
         }
         
@@ -114,15 +114,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 type: "SHOW_EDIT_FORM"
             })
         },
-        showAlert: (alertContent) => {
+        showAlert: (alertContent,alertType) => {
             dispatch({
                 type: "SHOW_ALERT_SUCCESS",
-                alertContent
+                alertContent,
+                alertType
             })
         },
-        hideAlert: () => {
+        hideAlert: (alertType) => {
             dispatch({
-                type: "HIDE_ALERT_SUCCESS"
+                type: "HIDE_ALERT_SUCCESS",
+                alertType
             })
         }
     }
