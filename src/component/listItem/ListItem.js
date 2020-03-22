@@ -13,7 +13,7 @@ class ListItem extends Component {
     deleteData = () => {
         this.props.deleteItem(this.props.note);
         //console.log(this.props.note);
-        this.props.showAlert("Xoa thanh cong ");
+        this.props.showAlert("Xoa thanh cong ", "danger");
     }
 
     render() {
@@ -63,10 +63,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 type: "DELETE_DATA",isDelete
             })
         },
-        showAlert: (alertContent) => {
+        showAlert: (alertContent,alertType) => {
             dispatch({
                 type: "SHOW_ALERT_SUCCESS",
-                alertContent
+                alertContent,
+                alertType
             })
         }
     }

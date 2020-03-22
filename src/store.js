@@ -7,7 +7,8 @@ const noteInitialState = {
     editNote: {},
     isAdd: false,
     alertSuccess: false,
-    alertContent: {}
+    alertContent: {},
+    alertype: ''
 };// trang thai ban dau cua state
 //reducer quan ly state va action 
 const allReducer = (state = noteInitialState, action) => {
@@ -34,7 +35,7 @@ const allReducer = (state = noteInitialState, action) => {
             return {...state,editNote:{}}
         
         case "SHOW_ALERT_SUCCESS":
-            return {...state, alertSuccess: true, alertContent: action.alertContent}
+            return {...state, alertSuccess: true, alertContent: action.alertContent, alertType: action.alertType}
 
         case "HIDE_ALERT_SUCCESS":
             return {...state,alertSuccess: false}
